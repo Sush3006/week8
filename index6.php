@@ -98,7 +98,8 @@ define('CONNECTION', 'sql1.njit.edu');
     public function insert() {
         $tableName = $this->tableName;
         $array = get_object_vars($this);
-        $columns=array();$values=array();
+        $columns=array();
+        $values=array();
          foreach($array as $key => $value){
           if($key!="tableName"){
            array_push($columns,$key);
@@ -197,8 +198,29 @@ define('CONNECTION', 'sql1.njit.edu');
  $records = accounts::findAll();
  $result=accounts::buildHtml($records,get_object_vars(accounts::create()));
  print_r($result);
+ $record = new account();
+ $record->id='3';
+ $record->email='narayan@njit.edu';
+ $record->fname="smiley";
+ $record->lname="lee";
+ $record->phone="7345673212";
+ $record->birthday="30-08-1993";
+ $record->gender="female";
+ $record->password="29395";
+ $record->update();
 
+ $records = accounts::findAll();
+ $result=accounts::buildHtml($records,get_object_vars(accounts::create()));
+ print_r($result);
 
+ $record = new account();
+ $record->id='3';
+ $record->delete();
+
+ $records = accounts::findAll();
+ $result=accounts::buildHtml($records,get_object_vars(accounts::create()));
+ print_r($result);
+ 
  $record = new todo();
  $record->owneremail="sush@njit.edu";
  $record->ownerid="1";
@@ -207,6 +229,15 @@ define('CONNECTION', 'sql1.njit.edu');
  $record->message="Hey";
  $record->isdone="0";
 //$record->insert();
+$record->insert();
+//print_r($record);
+$record = todos::create();
+//print_r($record);
+
+$records = todos::findAll();
+$result=todos::buildHtml($records,get_object_vars(todos::create()));
+print_r($result);
+
 
  $record = new todo();
  $record->id='2';
